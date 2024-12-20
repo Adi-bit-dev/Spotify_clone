@@ -2,14 +2,12 @@
 let uniqueIdCounter = 0; // Global counter to generate unique IDs
 
 function appendChild(container, imgSrc, name, isArtist = true) {
-    // Create the songs array
-    const songs = []; // Initialize an empty array
+    const songs = [];
     for (let i = 1; i <= 21; i++) {
         let song_name = `songs/anime_song_${i}.mp3`;
-        songs.push(song_name); // Use push to append elements to the array
+        songs.push(song_name);
     }
 
-    // Create the box container
     const box = document.createElement("div");
     box.classList.add("box");
 
@@ -18,27 +16,23 @@ function appendChild(container, imgSrc, name, isArtist = true) {
     }
     document.querySelector(container).appendChild(box);
 
-    // Create the picture section
     const picture = document.createElement("div");
     picture.classList.add("picture");
     picture.style.backgroundImage = `url(${imgSrc})`;
     box.appendChild(picture);
 
-    // Create the rst section with name(s)
     const rst = document.createElement("div");
     rst.classList.add("rst");
     rst.innerHTML = `<div>${name}</div><div>${isArtist ? "Artist" : ""}</div>`;
     box.appendChild(rst);
 
-    // Create the square section with play image
     const square = document.createElement("div");
     square.classList.add("square");
     square.innerHTML = `<img src="assets/play.png" alt="Image">`;
-    square.id = `square-${uniqueIdCounter++}`; // Assign a unique ID to each square
+    square.id = `square-${uniqueIdCounter++}`;
     box.appendChild(square);
 
-    // Add onclick functionality to the square
-    square.onclick = function () {
+    const playSong = () => {
         const right = document.querySelector(".right");
 
         if (!right) {
@@ -46,14 +40,12 @@ function appendChild(container, imgSrc, name, isArtist = true) {
             return;
         }
 
-        // Remove any previous audio elements if present
         const existingAudio = right.querySelector("audio");
         if (existingAudio) {
-            existingAudio.pause();  // Pause the currently playing audio
-            existingAudio.remove();  // Remove it from the DOM
+            existingAudio.pause();
+            existingAudio.remove();
         }
 
-        // Create the song bar
         const song_bar = document.createElement("div");
         song_bar.classList.add("song-bar");
         right.appendChild(song_bar);
@@ -62,13 +54,12 @@ function appendChild(container, imgSrc, name, isArtist = true) {
         play_buttons.classList.add("play-buttons");
         song_bar.appendChild(play_buttons);
 
-        // Get the song corresponding to the square's ID
-        const squareId = parseInt(square.id.split("-")[1]); // Extract the numeric part of the ID
-        const songSrc = songs[squareId % songs.length]; // Use modulo to wrap around if ID exceeds songs.length
+        const squareId = parseInt(square.id.split("-")[1]);
+        const songSrc = songs[squareId % songs.length];
 
         const audio = document.createElement("audio");
-        audio.src = songSrc; // Assign the song source dynamically
-        audio.controls = true; // Enable play/pause controls
+        audio.src = songSrc;
+        audio.controls = true;
 
         const icon = document.createElement("div");
         icon.classList.add("cross");
@@ -86,12 +77,10 @@ function appendChild(container, imgSrc, name, isArtist = true) {
 
         play_buttons.appendChild(audio);
 
-        // Start playing the audio
         audio.play().catch((error) => {
             console.error("Error playing audio:", error);
         });
 
-        // Optional: Add event listeners to log play/pause actions
         audio.addEventListener("play", () => {
             console.log("Audio started playing");
         });
@@ -102,6 +91,25 @@ function appendChild(container, imgSrc, name, isArtist = true) {
 
         console.log(`Playing song: ${songSrc}`);
     };
+
+    square.onclick = playSong;
+
+    // Add an event listener for the entire box on small screen sizes
+    const mediaQuery = window.matchMedia("(max-width: 412px)");
+    const handleBoxClick = (e) => {
+        if (mediaQuery.matches) {
+            playSong();
+        }
+    };
+
+    box.addEventListener("click", handleBoxClick);
+
+    // Clean up the listener if the screen size changes
+    mediaQuery.addEventListener("change", () => {
+        if (!mediaQuery.matches) {
+            box.removeEventListener("click", handleBoxClick);
+        }
+    });
 }
 
 // USe this function to assign songs directly assgn songs to the boxes with respective ID
