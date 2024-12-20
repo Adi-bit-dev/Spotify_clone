@@ -1,0 +1,57 @@
+/* Define the width of the scrollbar */
+::-webkit-scrollbar {
+    width: 2px;
+    /* Set your desired width */
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+    background: #121212;
+    /* Background color for the track */
+    border-radius: 10px;
+}
+
+/* Style the scrollbar handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Custom color for the handle */
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Change color on hover */
+}
+
+
+/* Customize scrollbar for WebKit browsers */
+.container::-webkit-scrollbar {
+    height: 1.2px;
+    /* Adjust the height of the scrollbar */
+}
+
+.flex-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Track background color */
+}
+
+.flex-container::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Handle color */
+    border-radius: 6px;
+    /* Rounded corners for the handle */
+}
+
+.flex-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Handle color on hover */
+}
+
+/* Customize scrollbar for Firefox */
+.flex-container {
+    scrollbar-color: #888 #f1f1f1;
+    /* Handle color and track color */
+    scrollbar-width: auto;
+    /* Options: auto, thin, none */
+}

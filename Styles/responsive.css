@@ -1,0 +1,54 @@
+/* For Mobile Phones */
+
+@media (max-width: 421px){
+    .left{
+        height: 100vh;
+    }
+    .right{
+        height: 100vh;
+    }
+    .nav-rest{
+        width: 96%;
+    }
+    .search{
+        width: 56px;
+    }
+    .buttons{
+        display: none;
+    }
+    .section1 > :nth-child(2){
+        overflow-x: scroll;
+    }
+    .song-bar{
+        bottom: 0px;
+    }
+    .song-bar{
+        width: 100%;
+    }
+}
+
+/* For PC */
+@media (min-width: 421px){
+    .left{
+        height: 93vh;
+    }
+    .right{
+        height: 93vh;
+    }
+}
+
+/* For Super Large PCs */
+@media (min-width: 1166px) {
+    .nav-rest{
+        width: 60%;
+    }
+    .left{
+        height: 100vh;
+    }
+    .right{
+        height: 100vh;
+    }
+    .section1 > :nth-child(2){
+        overflow-x: scroll;
+    }
+}
