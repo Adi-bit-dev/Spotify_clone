@@ -19,7 +19,7 @@ function adjust() {
         left.remove()
         right.classList.add("full_width")
         nav_text.remove()
-        last.remove
+        last.remove()
     }
 }
 nav_text.addEventListener('input',()=>{
