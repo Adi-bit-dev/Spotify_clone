@@ -4,35 +4,35 @@
 //
 // THIS FILE DEALS WITH THE RESPONSIVENESS OF THE NAV BAR AND THE LEFT SECTION
 
-const left = document.querySelector(".left")
+const left = document.querySelector(".left");
 
-const right = document.querySelector(".right")
+const right = document.querySelector(".right");
 
-const nav_text = document.querySelector('.txt')
+const nav_text = document.querySelector('.txt');
 
-const last = document.querySelector(".last")
+const last = document.querySelector(".last");
 // Function to resize the bottom layout
 
 function adjust() {  
     // check the width of the viewport
     if(window.innerWidth <= 412){
-        left.remove()
-        right.classList.add("full_width")
-        nav_text.remove()
-        last.remove()
+        left.remove();
+        right.classList.add("full_width");
+        nav_text.remove();
+        last.remove();
     }
 }
 nav_text.addEventListener('input',()=>{
     if (nav_text.placeholder == '') {
-        nav_text.placeholder = "What do you want to play"
+        nav_text.placeholder = "What do you want to play";
     }
     else{
-        nav_text.placeholder = ''
-        nav_text.classList.add('sh')
+        nav_text.placeholder = '';
+        nav_text.classList.add('sh');
     }
 })
 
-adjust()
+adjust();
 
 // Actively recall on resize
-window.addEventListener('resize',adjust)
+window.addEventListener('resize',adjust);
