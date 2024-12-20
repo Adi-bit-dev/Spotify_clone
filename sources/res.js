@@ -18,7 +18,6 @@ function adjust() {
     if(window.innerWidth <= 412){
         left.remove();
         right.classList.add("full_width");
-        nav_text.remove();
         last.remove();
     }
 }
